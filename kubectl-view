@@ -1,0 +1,69 @@
+#!/bin/bash
+
+#######################################
+# description
+# Arguments:
+#  None
+#######################################
+create_view() {
+  echo "create $*"
+}
+
+#######################################
+# description
+# Arguments:
+#  None
+#######################################
+delete_view() {
+  echo "delete $*"
+}
+
+#######################################
+# description
+# Arguments:
+#  None
+#######################################
+list_views() {
+  echo "list $*"
+}
+
+#######################################
+# description
+# Arguments:
+#  None
+#######################################
+show_view() {
+  echo "show $*"
+
+}
+
+#######################################
+# description
+# Arguments:
+#  None
+#######################################
+main() {
+  # This script is used to create custom column views of Kubernetes resources
+  # using kubectl. It is intended to be used with the kubectl plugin.
+  # Usage
+  # Create view: kubectl view create <view-name> <resource-type> <column-definitions>
+  # Delete view: kubectl view delete <view-name>
+  # List views: kubectl view list
+  # Show view: kubectl view <view-name>
+  if [ "$1" = "create" ] || [ "$1" = "c" ]; then
+    shift
+    create_view "$@"
+  elif [ "$1" = "delete" ] || [ "$1" = "d" ]; then
+    shift
+    delete_view "$@"
+  elif [ "$1" = "list" ] || [ "$1" = "l" ]; then
+    shift
+    list_views "@"
+  else
+    shift
+    show_view "$@"
+  fi
+
+}
+
+main "$@"
